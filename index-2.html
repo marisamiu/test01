@@ -1,0 +1,31 @@
+<!Doctype html>
+<html>
+<head>
+  <meta charset="utf-8"
+  <title>我脑公</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="myApp">
+    {{msg}}<!--这个两队大括号叫做模板，用来显示数据。-->
+</div>
+<script>
+  new Vue({
+      el:"#myApp",
+      data:{
+          msg:"好帅的"
+        }
+  });
+
+  //var vm = new Vue({
+  //  el:"#myApp",
+  //   data:{
+  //    msg:"Hello World"
+  //  }
+  //});
+
+  //注释的是因为以后我们会封装起来，所以让你养成一个习惯
+ </script>
+</body>
+</html>
