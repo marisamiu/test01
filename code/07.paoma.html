@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="./lib/vue.js" charset="utf-8"></script>
+    <!-- 1.导入vue包-->
+  </head>
+
+  <body>
+    <div id="app">
+      <input type="button" value="跑起来" @click="lang">
+      <input type="button" value="停止">
+      <h4>{{ msg }}</h4>
+    </div>
+    <!--2.创建一个要控制的区域-->
+
+    <script>
+    //在vue中，获取data数据 或者 调用 methods中的方法，需要通过this.数据属性名
+    //或者 this.方法名 来进行访问，this.表示new出来的VM实例
+      var vm = new Vue({
+      //new Vue要区分大小写
+        el: '#app',
+        data: {
+          msg: '走马灯的内容'
+        },
+        methods: {
+          lang() {
+          //console.log(this.msg)
+            setInterval( () => {
+              var start = this.msg.substring(0, 1)
+              var end =this.msg.substring(1)
+              this.msg = end + start
+          }, 400)
+            //获得到头第一个字符；获得后面所有字符；重新凭借新的字符串，赋值this.msg
+            //vm会监听自己身上data所有数据改变，数据发生变化，自动把从data同步到页面中
+            //好处：程序要只需要关心数据，不需要考虑重新渲染DOM页面
+
+
+          }
+        }
+      })
+
+
+      //分析：
+      //1.给【跑起来】按钮，绑定一个点击事件，V-on @
+      //2.在按钮的事件处理函数，写相关的业务逻辑代码：
+      //拿到msg字符串，然后调用字符串的subatring来进行字符串的截取操作，
+      //把第一个字符提取出来，放到最后一个位置即可；
+      //3.自动截取，把步骤2的代码放到定时器中去；
+    </script>
+  </body>
+</html>

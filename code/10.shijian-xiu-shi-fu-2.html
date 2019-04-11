@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="./lib/vue.js" charset="utf-8"></script>
+    <style media="screen">
+      .inner{
+        height: 150px;
+        background-color: pink;
+      }
+
+      .outer{
+        padding:40px;
+        background-color: red
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+
+      <!--使用 .stop 阻止冒泡
+      <div class="inner" @click="div1Handler">
+        <input type="button" value="chuo" @click.stop="btnHandler">
+      </div> -->
+
+      <!--使用.prevent 阻止默认行为
+      <a href="http://www.baidu.com" @click.prevent="linkClick">baidu</a> -->
+
+      <!--使用.capture实现捕获触发事件机制
+      <div class="inner" @click.capture="div1Handler">
+        <input type="button" value="chuo" @click="btnHandler">
+      </div> -->
+
+      <!--使用.self 只有点击当前元素，才会触发事件 处理函数
+      <div class="inner" @click.self="div1Handler">
+        <input type="button" value="chuo" @click="btnHandler">
+      </div> -->
+
+      <!--使用.once 只触发一次事件处理函数
+      <a href="http://www.baidu.com" @click.prevent.once="linkClick">baidu</a> -->
+
+      <!-- 演示 .stop 和 .self 区别 -->
+
+      <div class="outer" @click="div2Handler">
+        <div class="inner" @click="div1Handler">
+          <input type="button" value="chuo" @click.stop="btnHandler">
+        </div>
+      </div>
+      <!--.self 只会阻止自己的触发
+      <div class="outer" @click="div2Handler">
+        <div class="inner" @click.self="div1Handler">
+          <input type="button" value="chuo" @click="btnHandler">
+        </div>
+      </div> -->
+
+    </div>
+
+    <script>
+      var vm = new Vue ({
+        el: '#app',
+        data: {},
+        methods: {
+          div1Handler(){
+            console.log('触发inner div 点击事件')
+          },
+          btnHandler(){
+            console.log('触发btn按钮 点击事件')
+          },
+          linkClick(){
+            console.log('触发链接 点击事件')
+          },
+          div2Handler(){
+            console.log('触发了 outer div 点击事件')
+          }
+        }
+      });
+    </script>
+  </body>
+
+</html>

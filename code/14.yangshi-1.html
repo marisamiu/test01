@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="./lib/vue.js" charset="utf-8"></script>
+    <style media="screen">
+      .red {
+        color: red;
+      }
+      .thin {
+        font-weight: 200;
+      }
+      .italic {
+        font-style: italic;
+      }
+      .active {
+        letter-spacing: 0.5em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- <h1 class="red thin">Javescript内容</h1> -->
+
+      <!-- 方法1.直接传递数组,class需要使用V-bind做数据邦定
+      <h1 :class="['thin', 'italic']">Javescript内容</h1>-->
+
+      <!--方法2.在数组中使用三元表达式
+      <h1 :class="['thin', 'italic', flag?'active':'']">Javescript内容</h1> -->
+
+      <!--方法3.在数据中使用 对象 代替 三元表达式 提高代码可读性
+      <h1 :class="['thin', 'italic', {'active':flag} ]">Javascript的内容</h1> -->
+
+      <!--方法4.为class使用v-bind绑定 对象的时候，对象属性是类名，对象的属性可带可不带
+      引号，没有写：，属性的值是一个标识符
+      <h1 :class="{ red: true, thin: true, italic: false, active: false }">Javascript内容
+      </h1> -->
+      <h1 :class="classObj">Javascript内容</h1>
+      <h1 :class="classObj2">biu</h1>
+      <h1 :class="classObj">bobo</h1>
+      <h1 :class="classObj2">piu</h1>
+    </div>
+
+
+    <script>
+      var vm = new Vue ({
+        el: '#app',
+        data: {
+          flag: true,
+          classObj:{ red: true, thin: true, italic: false, active: false },
+          classObj2:{ red: true, thin: true, italic: true, active: true }
+        },
+        methods: {}
+      });
+    </script>
+  </body>
+
+</html>
